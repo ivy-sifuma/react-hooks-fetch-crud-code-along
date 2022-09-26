@@ -14,6 +14,25 @@ function ShoppingList() {
     .then((items) => setItems(items));
   }, []);
 
+  // add this function
+  function handleAddItem(newItem) {
+    console.log("shoppingList", newItem);
+    
+  }
+
+  function handleCategoryChange(category) {
+setSelectedCategory(category);
+    
+  }
+
+  const itemstoDisplay = items.filter((items) => {
+    if (selectedCategory === "All") return true;
+
+    return items.category === selectedCategory
+  } );
+
+
+
   //Add useEffect hook
   useEffect(() => {
     fetch("http://localhost:4000/items")
