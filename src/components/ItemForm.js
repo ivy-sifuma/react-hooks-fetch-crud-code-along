@@ -21,6 +21,7 @@ function ItemForm() {
   })
 
   .then((r) => r.json())
+  // call the onAddItem prop with newItem
   .then((newItem) => console.log(newItem));
 
     console.log("name:", name);
