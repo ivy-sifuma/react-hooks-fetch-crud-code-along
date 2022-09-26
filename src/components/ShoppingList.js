@@ -31,9 +31,24 @@ setSelectedCategory(category);
     return items.category === selectedCategory
   } );
 
+  return (
+    <div className="ShoppingList">
+      {/* add the onAddItem prop! */}
+      <ItemForm onAddItem={handleAddItem} />
+      <Filter
+        category={selectedCategory}
+        onCategoryChange={handleCategoryChange}
+      />
+      <ul className="Items">
+        {itemsToDisplay.map((item) => (
+          <Item key={item.id} item={item} />
+        ))}
+      </ul>
+    </div>
+  );
+}
 
-
-  //Add useEffect hook
+//Add useEffect hook
   useEffect(() => {
     fetch("http://localhost:4000/items")
     .then((r) => r.json())
@@ -64,6 +79,6 @@ setSelectedCategory(category);
       </ul>
     </div>
   );
-}
+
 
 export default ShoppingList;
