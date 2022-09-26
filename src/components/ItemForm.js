@@ -12,6 +12,17 @@ function ItemForm() {
       category: category,
       isIncart: false,
     };
+    fetch("http://localhost:4000/items", { 
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(itemData),
+  })
+
+  .then((r) => r.json())
+  .then((newItem) => console.log(newItem));
+
     console.log("name:", name);
     console.log("category:", category);
   }
@@ -21,7 +32,7 @@ function ItemForm() {
     <form className="NewItem" onSubmit={handleSubmit}>
       {/** ...form inputs here */}
     </form>
-  );
+);
 
 
   return (
