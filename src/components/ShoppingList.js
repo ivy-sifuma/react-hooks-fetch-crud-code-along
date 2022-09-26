@@ -16,6 +16,7 @@ function ShoppingList() {
 
   // add this function
   function handleAddItem(newItem) {
+    setItems([...items, newItem]);
     console.log("shoppingList", newItem);
     
   }
