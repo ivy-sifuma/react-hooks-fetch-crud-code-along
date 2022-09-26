@@ -23,9 +23,9 @@ function ShoppingList() {
   function handleCategoryChange(category) {
 setSelectedCategory(category);
     
-  }
+}
 
-  const itemstoDisplay = items.filter((items) => {
+  const itemsToDisplay = items.filter((items) => {
     if (selectedCategory === "All") return true;
 
     return items.category === selectedCategory
@@ -79,6 +79,6 @@ setSelectedCategory(category);
       </ul>
     </div>
   );
-
+        
 
 export default ShoppingList;
