@@ -29,7 +29,7 @@ setSelectedCategory(category);
   const itemsToDisplay = items.filter((items) => {
     if (selectedCategory === "All") return true;
 
-    return items.category === selectedCategory
+    return items.category === selectedCategory;
   } );
 
   return (

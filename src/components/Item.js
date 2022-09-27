@@ -3,6 +3,7 @@ import React from "react";
 function Item({ item }) {
   // Add function to handle button click
   function handleAddToCartClick() {
+    console.log("clicked item:", item);
     // add fetch request
   fetch(`http://localhost:4000/items/${item.id}`, {
     method: "PATCH",

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// destructure the onAddItem prop
 function ItemForm() {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("Produce");
