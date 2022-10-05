@@ -1,23 +1,33 @@
 import React from "react";
 
-function Item({ item }) {
+//Destructure the onUpdatedItem prop
+function Item({ item, onUpdatedItem,onDeleteItem }) {
+
   // Add function to handle button click
   function handleAddToCartClick() {
-    console.log("clicked item:", item);
-    // add fetch request
-  fetch(`http://localhost:4000/items/${item.id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
+    
+   // add fetch request
+   fetch(`http://localhost:4000/items/${item.id}`,{
+    method:"PATCH",
+    headers:{
+     "Content-Type":"application/json",
     },
-    body: JSON.stringify({
-      isInCart: !item.isInCart,
+    body:JSON.stringify({
+     isInCart: !item.isInCart,
     }),
+   })
+   .then((r)=>r.json())
+   .then((updatedItem)=> onUpdateItem(updatedItem))
+}
+function handleDeleteClick(){
+  fetch(`http://localhost:4000/items/${item.id}`,{
+    method:"DELETE"
   })
-    .then((r) => r.json())
-    .then((updatedItem) => console.log(updatedItem));
-    console.log("clicked item:", item);
-  }
+  .then((r)=> r.json())
+  .then(()=> onDeleteItem(item));
+}
+   //call on UpdatedItem, passing the data returned from the fetch request
+  
 
   return (
     <li className={item.isInCart ? "in-cart" : ""}>
@@ -29,9 +39,11 @@ function Item({ item }) {
       className={item.isInCart ? "remove" : "add"}>
         onClick={handleAddToCartClick}
         
+
         {item.isInCart ? "Remove From" : "Add to"} Cart
       </button>
       <button className="remove">Delete</button>
+      <button className="remove" onClick={handleDeleteClick}>Delete</button>
     </li>
   );
 }

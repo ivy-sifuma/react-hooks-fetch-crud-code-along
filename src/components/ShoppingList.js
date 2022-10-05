@@ -14,6 +14,19 @@ function ShoppingList() {
     .then((items) => setItems(items));
   }, []);
 
+  //add this callback function
+  function handleUpdateItem(updatedItem) {
+    const updatedItems = items.map((item) => {
+      if (item.id === updatedItem.id){
+        return updatedItem;
+      } else {
+        return item;
+      }
+    });
+    setItems(updatedItems)
+    console.log("In ShoppingCart:", updatedItem);
+  }
+
   // add this function
   function handleAddItem(newItem) {
     setItems([...items, newItem]);
@@ -41,13 +54,14 @@ setSelectedCategory(category);
         onCategoryChange={handleCategoryChange}
       />
       <ul className="Items">
+        {/*pass it as a prop to item */}
         {itemsToDisplay.map((item) => (
-          <Item key={item.id} item={item} />
+          <Item key={item.id} item={item} onUpdateItem={handleUpdateItem} />
         ))}
       </ul>
     </div>
   );
-}
+        }
 
 //Add useEffect hook
   useEffect(() => {
@@ -66,7 +80,8 @@ setSelectedCategory(category);
     return item.category === selectedCategory;
   });
 
-  return (
+    return (
+
     <div className="ShoppingList">
       <ItemForm />
       <Filter
@@ -80,6 +95,6 @@ setSelectedCategory(category);
       </ul>
     </div>
   );
-        
+                      
 
 export default ShoppingList;
